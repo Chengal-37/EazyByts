@@ -1,154 +1,118 @@
-# Real-time Chat Application
+# 💬 Real-Time Chat Application
 
-A full-stack chat application with user authentication, private messaging, and chat room functionality.
+This is a full-stack real-time chat application developed as part of the **Java Full Stack Developer Internship** at [EazyByts Web Solutions]. It supports user authentication, public/private messaging, and dynamic chat room management using Spring Boot and WebSockets.
 
-## Features
+---
 
-- User authentication and authorization
-- Real-time messaging using WebSocket
-- Private messaging between users
-- Group chat rooms
-- Message history
-- Online/offline status
-- Read receipts
-- Responsive design
+## 🚀 Features
 
-## Tech Stack
+- ✅ User Registration & Login with JWT Authentication
+- ✅ Secure Private & Public Chat Rooms
+- ✅ Real-Time Messaging with WebSockets
+- ✅ Responsive Frontend using HTML, CSS, and JavaScript
+- ✅ Backend APIs with Spring Boot & Spring Security
+- ✅ Message History & Chat Room Storage in MySQL
+- ✅ Modular Project Structure with MVC and Layered Architecture
 
-### Backend
-- Java 11
-- Spring Boot 2.7.0
-- Spring Security
-- Spring Data JPA
-- WebSocket
-- MySQL
-- JWT Authentication
+---
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- WebSocket Client
+## 🛠️ Tech Stack
 
-## Prerequisites
+| Layer       | Technology                  |
+|-------------|-----------------------------|
+| Frontend    | HTML, CSS, JavaScript       |
+| Backend     | Java 11, Spring Boot 2.7    |
+| Realtime    | WebSockets (STOMP)          |
+| Security    | Spring Security, JWT        |
+| Database    | MySQL                       |
+| ORM         | JPA, Hibernate              |
+| Build Tool  | Maven                       |
+| Versioning  | Git, GitHub                 |
 
-- Java 11 or higher
+---
+
+## 🧩 Project Structure
+
+```
+ChatApp/
+└── Java project/
+    └── Java project/
+        ├── pom.xml
+        ├── src/
+        │   └── main/
+        │       ├── java/com/chatapp/...   # All Java source code
+        │       ├── resources/
+        │       │   ├── static/            # Frontend (HTML, JS, CSS)
+        │       │   └── application.properties
+        └── README.md
+```
+
+---
+
+## ⚙️ Setup & Run
+
+### 📦 Prerequisites
+
+- Java 11+
 - Maven
 - MySQL
-- Node.js and npm (for frontend)
+- IDE (like IntelliJ or Eclipse)
 
-## Setup Instructions
+### 📌 Steps to Run
 
-1. **Clone the repository**
+1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd chatapp
+   git clone https://github.com/Chengal-37/EazyByts.git
+   cd EazyByts
    ```
 
-2. **Install and Configure MySQL**
-   - Download and install MySQL from [mysql.com](https://dev.mysql.com/downloads/installer/)
-   - During installation:
-     - Choose "Developer Default" or "Server only" setup type
-     - Remember the root password you set
-     - Keep the default port (3306)
-   - After installation, verify MySQL is running:
-     ```bash
-     # On Windows, open Command Prompt and run:
-     mysql -u root -p
-     # Enter your root password when prompted
-     
-     # Verify MySQL is running:
-     mysql> SELECT VERSION();
-     
-     # Exit MySQL:
-     mysql> exit
-     ```
+2. **Configure Database**
+   Edit `application.properties`:
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/chatapp
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   ```
 
-3. **Configure Database Connection**
-   - Open `src/main/resources/application.properties`
-   - Update the database credentials if needed:
-     ```properties
-     spring.datasource.url=jdbc:mysql://localhost:3306/chatapp?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
-     spring.datasource.username=root
-     spring.datasource.password=your_password
-     ```
-   - Replace `your_password` with the root password you set during MySQL installation
+3. **Create Database**
+   ```sql
+   CREATE DATABASE chatapp;
+   ```
 
-4. **Verify MySQL Service**
-   - On Windows:
-     - Press Win + R
-     - Type `services.msc`
-     - Look for "MySQL" service
-     - Ensure it's running (Status should be "Running")
-     - If not, right-click and select "Start"
-
-5. **Run the Application**
+4. **Run the Application**
    ```bash
    mvn spring-boot:run
    ```
-   The application will:
-   - Connect to MySQL
-   - Create the database if it doesn't exist
-   - Create necessary tables automatically
-   - Start the web server on port 8080
 
-6. **Access the Application**
-   - Open your browser and navigate to `http://localhost:8080`
-   - Register a new account or login with existing credentials
+5. **Access the UI**
+   Open `src/main/resources/static/index.html` in your browser (or set up a controller to serve it).
 
-## Troubleshooting
+---
 
-### Database Connection Issues
-1. Verify MySQL is running
-2. Check if you can connect using MySQL command line client
-3. Verify username and password in `application.properties`
-4. Ensure port 3306 is not blocked by firewall
-5. If you get SSL errors, add `useSSL=false` to the database URL
+## 📹 Demo & Walkthrough
 
-### Application Startup Issues
-1. Check Java version: `java -version`
-2. Verify Maven installation: `mvn -version`
-3. Check application logs for specific error messages
+🎥 [Upload your demo video link here]
 
-## API Documentation
+---
 
-### Authentication Endpoints
-- POST /api/auth/signup - Register new user
-- POST /api/auth/signin - Login user
-- POST /api/auth/signout - Logout user
+## 📘 What I Learned
 
-### User Endpoints
-- GET /api/users/me - Get current user
-- GET /api/users/{id} - Get user by ID
-- PUT /api/users/me - Update current user
+- Secure user authentication using Spring Security and JWT
+- Real-time communication with STOMP over WebSockets
+- RESTful API development with Spring Boot
+- Connecting frontend and backend seamlessly
+- Full-stack deployment and GitHub collaboration
 
-### Message Endpoints
-- GET /api/messages/private/{userId} - Get private messages
-- POST /api/messages/private - Send private message
-- GET /api/messages/room/{roomId} - Get room messages
-- POST /api/messages/room - Send room message
+---
 
-### Chat Room Endpoints
-- GET /api/rooms - Get all public rooms
-- POST /api/rooms - Create new room
-- GET /api/rooms/{id} - Get room details
-- PUT /api/rooms/{id} - Update room
-- DELETE /api/rooms/{id} - Delete room
+## 📌 Acknowledgments
 
-## WebSocket Endpoints
-- /ws - WebSocket connection endpoint
-- /ws/private - Private messaging endpoint
-- /ws/room - Room messaging endpoint
+Special thanks to **EazyByts Web Solutions** for providing this opportunity and mentorship throughout the internship project.
 
-## Security
-- JWT-based authentication
-- Password encryption
-- Role-based access control
-- Secure WebSocket connections
+---
 
-## Contributing
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request 
+## 🏷️ Tags
+
+`#EazyByts` `#FullStackDeveloper` `#SpringBoot` `#ChatApp` `#JavaInternship` `#WebSockets` `#JavaProject`
+
+---
