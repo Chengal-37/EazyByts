@@ -1,0 +1,12 @@
+# Java / Spring Boot
+target/
+*.class
+*.jar
+*.war
+*.iml
+.idea/
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db

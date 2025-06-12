@@ -1,0 +1,287 @@
+/* Add a wrapper for alignment */
+.message-wrapper {
+    display: flex; /* Use flexbox for alignment */
+    margin-bottom: 0.5rem; /* Space between message groups */
+}
+
+/* Align messages sent by the current user to the right */
+.message-wrapper.sent-wrapper {
+    justify-content: flex-end;
+}
+
+/* Align received messages to the left */
+.message-wrapper.received-wrapper {
+    justify-content: flex-start;
+}
+
+/* Chat Message Styling - refined for bubble appearance */
+.message {
+    padding: 0.6rem 1rem; /* Slightly more padding for a better bubble look */
+    border-radius: 1.2rem; /* More rounded corners for a typical chat bubble */
+    display: inline-block; /* Still inline-block, so its size adapts to content */
+    max-width: 75%; /* Slightly reduced max-width to give more room for alignment */
+    word-wrap: break-word; /* Ensures long words break and wrap */
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative; /* Important for absolute positioning of time and sender name */
+    padding-bottom: 1.6rem; /* Increased padding-bottom to make space for the time */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted bubble effect */
+    clear: both; /* Ensures messages don't float next to each other unexpectedly */
+}
+
+/* Styles for messages sent by the current user */
+.message.sent {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    /* Custom border radii for the 'tail' effect, makes the top-right corner sharper */
+    border-top-right-radius: 0.4rem;
+    border-bottom-left-radius: 1.2rem;
+}
+
+/* Styles for messages received from other users */
+.message.received {
+    background-color: #e9ecef; /* Lighter background for received messages */
+    color: #212529; /* Dark text */
+    /* Custom border radii for the 'tail' effect, makes the top-left corner sharper */
+    border-top-left-radius: 0.4rem;
+    border-bottom-right-radius: 1.2rem;
+}
+
+/* NEW: Styles for messages in private rooms */
+/* This will apply to both sent and received messages when `currentRoom.isPrivate` is true */
+.message.private-room-message {
+    /* Example: A different background color to distinguish private messages */
+    background-color: #f0f0f0; /* A light grey */
+    border: 1px solid #ced4da; /* A subtle border */
+    color: #343a40; /* Darker text for contrast */
+}
+
+/* NEW: Adjust sent messages in private rooms */
+.message.private-room-message.sent {
+    background-color: #6c757d; /* A muted grey-blue for sent messages in private rooms */
+    color: white;
+    border: none; /* Remove border if background is strong enough */
+}
+
+/* NEW: Adjust received messages in private rooms */
+.message.private-room-message.received {
+    background-color: #e0e0e0; /* A slightly darker grey for received messages in private rooms */
+    color: #212529;
+    border: 1px solid #adb5bd;
+}
+
+/* Styling for the sender's name */
+.message .sender {
+    font-weight: 600; /* Bolder for visibility */
+    font-size: 0.85rem; /* Slightly larger font */
+    margin-bottom: 0.15rem; /* Small space below the name */
+    color: rgba(0, 0, 0, 0.6); /* Slightly greyed out for others' messages */
+    display: block; /* Ensures name is on its own line */
+}
+
+/* Lighter color for sender name in sent messages */
+.message.sent .sender {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* NEW: Adjust sender name color for private room messages */
+.message.private-room-message .sender {
+    color: rgba(0, 0, 0, 0.7); /* Darker for light background */
+}
+
+.message.private-room-message.sent .sender {
+    color: rgba(255, 255, 255, 0.9); /* Lighter for darker background */
+}
+
+/* Styling for the message text content */
+.message .text {
+    white-space: pre-wrap; /* Preserves whitespace and line breaks */
+    padding-right: 30px; /* Provides space for the absolute-positioned time */
+}
+
+/* Styling for the message time */
+.message .time {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8); /* Default for sent messages (white, slightly transparent) */
+    position: absolute; /* Positions time relative to the .message bubble */
+    bottom: 4px; /* Distance from the bottom of the bubble */
+    right: 8px; /* Distance from the right of the bubble */
+}
+
+/* Darker color for time in received messages */
+.message.received .time {
+    color: #6c757d;
+}
+
+/* NEW: Adjust time color for private room messages */
+.message.private-room-message .time {
+    color: #6c757d; /* Darker for light background */
+}
+
+.message.private-room-message.sent .time {
+    color: rgba(255, 255, 255, 0.8); /* Lighter for darker background */
+}
+
+/* Date Separator */
+.date-label,
+.date-separator {
+    text-align: center;
+    margin: 1rem auto;
+    position: relative;
+    width: 100%; /* Ensure it spans full width for lines */
+    display: flex; /* Use flexbox for centering content and lines */
+    align-items: center; /* Vertically align content and lines */
+    justify-content: center; /* Center the text */
+}
+
+.date-label::before,
+.date-label::after,
+.date-separator::before,
+.date-separator::after {
+    content: '';
+    position: absolute; /* Relative to .date-separator */
+    top: 50%;
+    width: 40%; /* Length of the lines */
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0; /* Behind the span */
+}
+
+.date-label::before,
+.date-separator::before {
+    left: 0; /* Left line starts from the left edge */
+}
+
+.date-label::after,
+.date-separator::after {
+    right: 0; /* Right line starts from the right edge */
+}
+
+.date-label span,
+.date-separator span {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    display: inline-block;
+    position: relative;
+    z-index: 1; /* Above the lines */
+}
+
+/* Chat Container */
+#messageArea {
+    padding: 1rem;
+    background-color: #f8f9fa; /* Slightly off-white background for chat area */
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    height: 500px;
+    overflow-y: auto;
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Arrange messages vertically */
+}
+
+/* Chat Room List */
+.room-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.room-item:hover {
+    background-color: #f8f9fa;
+}
+
+.room-item.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Auth Forms */
+#auth-forms {
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+/* Bootstrap Card Styling */
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+}
+
+.card-header .btn-danger {
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-header .btn-danger:hover {
+    background-color: #dc3545;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Message Input Form */
+#messageForm {
+    margin-top: 1rem;
+}
+
+#messageInput {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#messageForm .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .message.sent,
+    .message.received {
+        margin-left: 5%;
+        margin-right: 5%;
+        max-width: 90%;
+    }
+
+    #chat-interface .row {
+        margin: 0;
+    }
+
+    #chat-interface .col-md-3,
+    #chat-interface .col-md-9 {
+        padding: 0;
+    }
+}
