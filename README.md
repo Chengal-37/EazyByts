@@ -89,12 +89,6 @@ ChatApp/
 
 ---
 
-## 📹 Demo & Walkthrough
-
-🎥 [Upload your demo video link here]
-
----
-
 ## 📘 What I Learned
 
 - Secure user authentication using Spring Security and JWT
